@@ -1,3 +1,5 @@
-training_cnn/test_data*
-models/
-__pycache__
+feature_based_classifiers/models
+cnn/training_*
+cnn/test_*
+human_ecoli_classification_dataset
+*__pycache__/*
