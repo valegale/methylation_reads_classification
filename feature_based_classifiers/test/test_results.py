@@ -8,7 +8,7 @@ import csv
 import pysam
 
 # Model directory
-model_dir = "../models"
+model_dir = "models"
 
 # LOAD test BAM FILES
 human_bam = "../human_ecoli_classification_dataset/test/human/bam/human.bam"

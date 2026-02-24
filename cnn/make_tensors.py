@@ -172,7 +172,7 @@ def run_generation_training(
         bam_path="../human_ecoli_classification_dataset/training/ecoli/bam/ecoli.bam",
         mod_5mC_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_5mC.bed",
         mod_6mA_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_6mA.bed",
-        mod_4mC_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_4mC.bed",cd
+        mod_4mC_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_4mC.bed",
         methylation_cutoff=methylation_cutoff,
         label_name="ecoli",
         window_size=window_size,
