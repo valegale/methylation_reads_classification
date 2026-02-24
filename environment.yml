@@ -6,7 +6,7 @@ channels:
 dependencies:
   - matplotlib
   - numpy
-  - pandas=3.0.1
+  - pandas
   - pysam
   - pytorch
   - scikit-learn
