@@ -63,7 +63,7 @@ classifiers = {
 }
 
 # save the models in a model directory
-models_dir = os.path.join("..", "models")
+models_dir = "models"
 os.makedirs(models_dir, exist_ok=True)
 
 # Train and save

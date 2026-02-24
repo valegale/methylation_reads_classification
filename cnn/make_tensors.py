@@ -150,7 +150,55 @@ def process_sample(bam_path, mod_5mC_path, mod_6mA_path, mod_4mC_path, methylati
     print(f"Done ({count} reads processed).")
 
 
-def run_generation(
+def run_generation_training(
+    window_size,
+    methylation_cutoff,
+    random_sequences=False,
+    supreme_test=False,
+    normalize=False,
+    ):
+    min_len = 500
+
+    output_dir = (
+        f"training_data_window{window_size}_cutoff{methylation_cutoff}"
+        + ("_norm" if normalize else "")
+        + ("_supreme" if supreme_test else "")
+        + ("_test" if random_sequences else "")
+        + "/"
+    )
+    os.makedirs(output_dir, exist_ok=True)
+
+    process_sample(
+        bam_path="../human_ecoli_classification_dataset/training/ecoli/bam/ecoli.bam",
+        mod_5mC_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_5mC.bed",
+        mod_6mA_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_6mA.bed",
+        mod_4mC_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_4mC.bed",cd
+        methylation_cutoff=methylation_cutoff,
+        label_name="ecoli",
+        window_size=window_size,
+        min_len=min_len, 
+        normalize=normalize,
+        test=random_sequences,
+        supreme_test=supreme_test,
+        output_dir=output_dir
+    )
+
+    process_sample(
+        bam_path="../human_ecoli_classification_dataset/training/human/bam/human.bam",
+        mod_5mC_path="../human_ecoli_classification_dataset/training/human/bed/human_5mC.bed",
+        mod_6mA_path="../human_ecoli_classification_dataset/training/human/bed/human_6mA.bed",
+        mod_4mC_path="../human_ecoli_classification_dataset/training/human/bed/human_4mC.bed",
+        methylation_cutoff=methylation_cutoff,
+        label_name="human",
+        window_size=window_size,
+        min_len=min_len,
+        normalize=normalize,    
+        test=random_sequences,
+        supreme_test=supreme_test,
+        output_dir=output_dir
+    )
+
+def run_generation_test(
     window_size,
     methylation_cutoff,
     random_sequences=False,
@@ -169,10 +217,10 @@ def run_generation(
     os.makedirs(output_dir, exist_ok=True)
 
     process_sample(
-        bam_path="../human_ecoli_classification_dataset/training/ecoli/bam/ecoli.bam",
-        mod_5mC_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_5mC.bed",
-        mod_6mA_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_6mA.bed",
-        mod_4mC_path="../human_ecoli_classification_dataset/training/ecoli/bed/ecoli_4mC.bed",
+        bam_path="../human_ecoli_classification_dataset/test/ecoli/bam/ecoli.bam",
+        mod_5mC_path="../human_ecoli_classification_dataset/test/ecoli/bed/ecoli_5mC.bed",
+        mod_6mA_path="../human_ecoli_classification_dataset/test/ecoli/bed/ecoli_6mA.bed",
+        mod_4mC_path="../human_ecoli_classification_dataset/test/ecoli/bed/ecoli_4mC.bed",
         methylation_cutoff=methylation_cutoff,
         label_name="ecoli",
         window_size=window_size,
@@ -184,10 +232,10 @@ def run_generation(
     )
 
     process_sample(
-        bam_path="../human_ecoli_classification_dataset/training/human/bam/human.bam",
-        mod_5mC_path="../human_ecoli_classification_dataset/training/human/bed/human_5mC.bed",
-        mod_6mA_path="../human_ecoli_classification_dataset/training/human/bed/human_6mA.bed",
-        mod_4mC_path="../human_ecoli_classification_dataset/training/human/bed/human_4mC.bed",
+        bam_path="../human_ecoli_classification_dataset/test/human/bam/human.bam",
+        mod_5mC_path="../human_ecoli_classification_dataset/test/human/bed/human_5mC.bed",
+        mod_6mA_path="../human_ecoli_classification_dataset/test/human/bed/human_6mA.bed",
+        mod_4mC_path="../human_ecoli_classification_dataset/test/human/bed/human_4mC.bed",
         methylation_cutoff=methylation_cutoff,
         label_name="human",
         window_size=window_size,

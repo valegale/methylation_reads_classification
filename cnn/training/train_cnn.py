@@ -21,7 +21,7 @@ def train_experiment(window_size, cutoff):
     # Paths (derived from params)
     
     base_dir = "."
-    data_dir = f"{base_dir}/test_data_window{window_size}_cutoff{cutoff}_test"
+    data_dir = f"{base_dir}/training_data_window{window_size}_cutoff{cutoff}"
 
     human_dir = f"{data_dir}/human/"
     ecoli_dir = f"{data_dir}/ecoli/"
@@ -35,8 +35,11 @@ def train_experiment(window_size, cutoff):
     num_human = len(ds_human)
     print(f"Human reads: {num_human}")
 
+    # sampling ecoli reads
     ecoli_indices = random.sample(range(len(ds_ecoli_full)), num_human)
     ds_ecoli = Subset(ds_ecoli_full, ecoli_indices)
+
+    print(f"Ecoli reads: {len(ds_ecoli)}")
 
     dataset = ConcatDataset([ds_human, ds_ecoli])
 
